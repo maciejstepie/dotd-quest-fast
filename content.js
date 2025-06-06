@@ -19,7 +19,7 @@
 				const energyAvailable = GetEnergy();
 				const energyRequiredAll = left * energyRequiredOne;
 				const canAll = energyAvailable >= energyRequiredAll;
-				const fires = Math.floor((energyRequiredAll) / energyRequiredOne);
+				const fires = energyAvailable < energyRequiredAll ? Math.floor((energyAvailable) / energyRequiredOne) : Math.floor((energyRequiredAll) / energyRequiredOne);
 
 				if (!document.querySelector('#allquestbutton')) {
 					addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires);
@@ -50,7 +50,11 @@
 			const clickableDiv = document.createElement('div');
 			clickableDiv.id = "allquestbutton"
 			if (!canAll) {
-				clickableDiv.textContent = `Spend ${energyRequiredAll} Energy`;
+				if (fires == 0) {
+					clickableDiv.textContent = `Doesn't have enough energy!`;
+				} else {
+					clickableDiv.textContent = `Requires ${energyRequiredAll} Energy\nCan spend ${fires * energyRequiredOne} energy`;
+				}
 			}
 			else {
 				clickableDiv.textContent = `Spend ${energyRequiredAll} Energy`;
@@ -66,9 +70,6 @@
 			});
 
 			const handleClick = () => {
-
-				//	console.log(fires);
-
 				clickButton(fires)
 			};
 
