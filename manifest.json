@@ -1,0 +1,15 @@
+{
+	"manifest_version": 3,
+	"name": "Quest Button Checker",
+	"version": "1.0",
+	"description": "Logs 'yes' if on quest page and quest button exists",
+	"permissions": ["scripting"],
+
+	"content_scripts": [
+		{
+			"matches": ["https://play.dragonsofthevoid.com/*"],
+			"js": ["content.js"],
+			"run_at": "document_idle"
+		}
+	]
+}
