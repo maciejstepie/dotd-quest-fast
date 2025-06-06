@@ -41,7 +41,7 @@
 		return resourceBars ? resourceBars.textContent.split('/')[0] : null;
 
 	}
-	function addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll) {
+	function addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires) {
 		const parent = document.querySelector('.quest.button').parentNode;
 
 		if (parent) {
@@ -67,7 +67,7 @@
 
 			const handleClick = () => {
 
-				console.log(fires);
+				//	console.log(fires);
 
 				clickButton(fires)
 			};
