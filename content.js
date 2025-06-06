@@ -25,7 +25,7 @@
 					addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires);
 				}
 				else {
-					updateFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires);
+					//updateFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires);
 				}
 				//clearInterval(intervalId);
 			}
