@@ -12,7 +12,7 @@ You can load this extension into any Chromium-based browser (such as Chrome, Bra
 ### 1. Download or Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone git@github.com:maciejstepie/dotd-quest-fast.git
 ```
 
 Or download it as a ZIP and extract it to a folder.
@@ -34,4 +34,4 @@ Or download it as a ZIP and extract it to a folder.
 
 
 ## Know bugs to fix
-- Doenst update the required energy after manually clicking button
+- Doesn't update the required energy after manually clicking button
