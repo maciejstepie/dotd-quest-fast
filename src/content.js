@@ -1,3 +1,14 @@
+import { addFancyButton } from "./render";
+
+export function clickButton(fires) {
+	const button = document.querySelector('.quest.button');
+	if (button) {
+		for (let index = 0; index < fires; index++) {
+			button.click();
+		}
+	}
+}
+
 (function () {
 	const TARGET_HASH = '#/quest';
 	const CHECK_INTERVAL = 1000;
@@ -41,54 +52,8 @@
 		return resourceBars ? resourceBars.textContent.split('/')[0] : null;
 
 	}
-	function addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires) {
-		const parent = document.querySelector('.quest.button').parentNode;
-
-		if (parent) {
-
-			//console.log(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll);
-			const clickableDiv = document.createElement('div');
-			clickableDiv.id = "allquestbutton"
-			if (!canAll) {
-				if (fires == 0) {
-					clickableDiv.textContent = `Doesn't have enough energy!`;
-				} else {
-					clickableDiv.textContent = `Requires ${energyRequiredAll} Energy\nCan spend ${fires * energyRequiredOne} energy`;
-				}
-			}
-			else {
-				clickableDiv.textContent = `Spend ${energyRequiredAll} Energy`;
-			}
-			Object.assign(clickableDiv.style, {
-				cursor: "pointer",
-				width: "100px",
-				color: canAll ? "green" : "red",
-				display: "flex",
-				alignItems: "center",
-				border: "solid 2px #8b6950",
-				'text-align': 'center'
-			});
-
-			const handleClick = () => {
-				clickButton(fires)
-			};
-
-			clickableDiv.addEventListener('click', handleClick);
-
-			// Append to parent
-			parent.appendChild(clickableDiv)
-		}
 
 
-	}
-	function clickButton(fires) {
-		const button = document.querySelector('.quest.button');
-		if (button) {
-			for (let index = 0; index < fires; index++) {
-				button.click();
-			}
-		}
-	}
 
 	// Initial check
 	checkQuestButton();

@@ -1,0 +1,25 @@
+{
+	"name": "dotd-quest-fast",
+	"version": "1.1.0",
+	"description": "Very simple chrome based browser extension to add a button that will allow to click once to perform all required clicks on node.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "esbuild src/content.js --bundle --outfile=build/content.js --format=iife && node -e \"require('fs').copyFileSync('src/manifest.json','build/manifest.json')\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/maciejstepie/dotd-quest-fast.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/maciejstepie/dotd-quest-fast/issues"
+	},
+	"homepage": "https://github.com/maciejstepie/dotd-quest-fast#readme",
+	"devDependencies": {
+		"esbuild": "^0.27.2"
+	}
+}
