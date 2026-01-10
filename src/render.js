@@ -1,36 +1,39 @@
 import { clickButton } from "./content";
+import t from "./locale";
+const renderOnButton = false;
 
 export function addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires) {
 	const parent = document.querySelector('.quest.button').parentNode;
 
 	if (parent) {
-
 		//console.log(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll);
 		const clickableDiv = document.createElement('div');
 		clickableDiv.id = "allquestbutton"
+		let className = "fancyButton ";
+		if (renderOnButton) {
+			className += "inside "
+		}
 		if (!canAll) {
 			if (fires == 0) {
-				clickableDiv.textContent = `Doesn't have enough energy!`;
+				clickableDiv.textContent = t('en', "error.no_energy", { name: 'John' })
+				className += "error";
 			} else {
-				clickableDiv.textContent = `Requires ${energyRequiredAll} Energy\nCan spend ${fires * energyRequiredOne} energy`;
+				clickableDiv.textContent = t('en', "warning.energy", { energyRequiredAll: energyRequiredAll, canSpend: fires * energyRequiredOne })
+				className += "warning";
 			}
 		}
 		else {
-			clickableDiv.textContent = `Spend ${energyRequiredAll} Energy`;
+			clickableDiv.textContent = t('en', "spend.energy", { energyRequiredAll: energyRequiredAll });
 		}
-		Object.assign(clickableDiv.style, {
-			cursor: "pointer",
-			width: "100px",
-			color: canAll ? "green" : "red",
-			display: "flex",
-			alignItems: "center",
-			border: "solid 2px #8b6950",
-			'text-align': 'center'
-		});
 
-		const handleClick = () => {
+		clickableDiv.className = className;
+
+		const handleClick = (e) => {
+			e.stopPropagation();
+			e.preventDefault();
+
 			clickButton(fires);
-			updateFancyButton(clickableDiv);
+			//	updateFancyButton(clickableDiv);
 		};
 
 		clickableDiv.addEventListener('click', handleClick);
@@ -42,8 +45,10 @@ export function addFancyButton(left, max, energyAvailable, energyRequiredOne, en
 
 }
 function updateFancyButton(buttonContext) {
-	//SOON
-	//console.log(buttonContext, "updating button test");
+	const clickableDiv = document.getElementById('allquestbutton');
+	if (clickableDiv) {
+
+	}
 
 
 }

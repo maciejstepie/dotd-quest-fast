@@ -8,6 +8,13 @@ export function clickButton(fires) {
 		}
 	}
 }
+export function GetEnergy() {
+	const resourceBars = document.querySelectorAll('.resource-bar-container')[1]
+		?.querySelector('.ammount-left')
+		?.querySelectorAll('span')[0];
+	return resourceBars ? resourceBars.textContent.split('/')[0] : null;
+
+}
 
 (function () {
 	const TARGET_HASH = '#/quest';
@@ -45,13 +52,7 @@ export function clickButton(fires) {
 
 		//	setTimeout(() => clearInterval(intervalId), CHECK_TIMEOUT);
 	}
-	function GetEnergy() {
-		const resourceBars = document.querySelectorAll('.resource-bar-container')[1]
-			?.querySelector('.ammount-left')
-			?.querySelectorAll('span')[0];
-		return resourceBars ? resourceBars.textContent.split('/')[0] : null;
 
-	}
 
 
 

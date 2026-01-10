@@ -1,39 +1,56 @@
 (() => {
+  // src/locale/en.json
+  var en_default = {
+    "error.no_energy": "Doesn't have enough energy!",
+    "warning.energy": "Requires {{energyRequiredAll}} Energy\nCan spend {{canSpend}} energy",
+    "spend.energy": "Spend {{energyRequiredAll}} Energy"
+  };
+
+  // src/locale/pl.json
+  var pl_default = {};
+
+  // src/locale/index.js
+  var translations = { en: en_default, pl: pl_default };
+  function t(lang, key, vars = {}) {
+    const langData = translations[lang] || translations.en;
+    let text = langData[key] || key;
+    for (const k in vars) {
+      text = text.replace(`{{${k}}}`, vars[k]);
+    }
+    return text;
+  }
+
   // src/render.js
+  var renderOnButton = false;
   function addFancyButton(left, max, energyAvailable, energyRequiredOne, energyRequiredAll, canAll, fires) {
     const parent = document.querySelector(".quest.button").parentNode;
     if (parent) {
       const clickableDiv = document.createElement("div");
       clickableDiv.id = "allquestbutton";
+      let className = "fancyButton ";
+      if (renderOnButton) {
+        className += "inside ";
+      }
       if (!canAll) {
         if (fires == 0) {
-          clickableDiv.textContent = `Doesn't have enough energy!`;
+          clickableDiv.textContent = t("en", "error.no_energy", { name: "John" });
+          className += "error";
         } else {
-          clickableDiv.textContent = `Requires ${energyRequiredAll} Energy
-Can spend ${fires * energyRequiredOne} energy`;
+          clickableDiv.textContent = t("en", "warning.energy", { energyRequiredAll, canSpend: fires * energyRequiredOne });
+          className += "warning";
         }
       } else {
-        clickableDiv.textContent = `Spend ${energyRequiredAll} Energy`;
+        clickableDiv.textContent = t("en", "spend.energy", { energyRequiredAll });
       }
-      Object.assign(clickableDiv.style, {
-        cursor: "pointer",
-        width: "100px",
-        color: canAll ? "green" : "red",
-        display: "flex",
-        alignItems: "center",
-        border: "solid 2px #8b6950",
-        "text-align": "center"
-      });
-      const handleClick = () => {
+      clickableDiv.className = className;
+      const handleClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         clickButton(fires);
-        updateFancyButton(clickableDiv);
       };
       clickableDiv.addEventListener("click", handleClick);
       parent.appendChild(clickableDiv);
     }
-  }
-  function updateFancyButton(buttonContext) {
-    console.log(buttonContext, "updating button test");
   }
 
   // src/content.js
@@ -44,6 +61,10 @@ Can spend ${fires * energyRequiredOne} energy`;
         button.click();
       }
     }
+  }
+  function GetEnergy() {
+    const resourceBars = document.querySelectorAll(".resource-bar-container")[1]?.querySelector(".ammount-left")?.querySelectorAll("span")[0];
+    return resourceBars ? resourceBars.textContent.split("/")[0] : null;
   }
   (function() {
     const TARGET_HASH = "#/quest";
@@ -70,10 +91,6 @@ Can spend ${fires * energyRequiredOne} energy`;
           }
         }
       }, CHECK_INTERVAL);
-    }
-    function GetEnergy() {
-      const resourceBars = document.querySelectorAll(".resource-bar-container")[1]?.querySelector(".ammount-left")?.querySelectorAll("span")[0];
-      return resourceBars ? resourceBars.textContent.split("/")[0] : null;
     }
     checkQuestButton();
     setInterval(() => {

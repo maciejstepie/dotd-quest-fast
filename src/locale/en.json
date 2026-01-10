@@ -1,0 +1,5 @@
+{
+	"error.no_energy": "Doesn't have enough energy!",
+	"warning.energy": "Requires {{energyRequiredAll}} Energy\nCan spend {{canSpend}} energy",
+	"spend.energy": "Spend {{energyRequiredAll}} Energy"
+}

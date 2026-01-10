@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "esbuild src/content.js --bundle --outfile=build/content.js --format=iife && node -e \"require('fs').copyFileSync('src/manifest.json','build/manifest.json')\""
+		"build": "esbuild src/content.js --bundle --outfile=build/content.js --format=iife  && node -e \"require('fs').copyFileSync('src/manifest.json','build/manifest.json')\" && node -e \"require('fs').copyFileSync('src/style.css','build/style.css')\""
 	},
 	"repository": {
 		"type": "git",

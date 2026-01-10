@@ -1,0 +1,23 @@
+.fancyButton {
+	cursor: pointer;
+	width: 100px;
+	display: flex;
+	align-items: center;
+	border-left: solid 2px #8b6950;
+	text-align: center;
+	color: green;
+	font-size: 14px;
+}
+.fancyButton.error {
+	color: red;
+}
+.fancyButton.warning {
+	color: yellow;
+}
+.fancyButton.inside {
+	position: absolute;
+	bottom: 0;
+	background: black;
+	width: 119px;
+	left: 0px;
+}

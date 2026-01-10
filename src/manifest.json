@@ -1,14 +1,15 @@
 {
 	"manifest_version": 3,
 	"name": "Quest Button Checker",
-	"version": "1.1",
-	"description": "Logs 'yes' if on quest page and quest button exists",
+	"version": "1.1.0",
+	"description": "Adds button on quest page to do use all available energy for quest",
 	"permissions": ["scripting"],
 
 	"content_scripts": [
 		{
 			"matches": ["https://play.dragonsofthevoid.com/*"],
 			"js": ["content.js"],
+			"css": ["style.css"],
 			"run_at": "document_idle"
 		}
 	]

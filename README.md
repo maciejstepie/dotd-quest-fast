@@ -16,6 +16,10 @@ Run `pnpm run build` script to update bundle in `build` directory.
 
 You can load this extension into any Chromium-based browser (such as Chrome, Brave, or Edge) by following these steps:
 
+## Settings
+
+-   Posible switch to render on top of vanilla button by editng boolean value `renderOnButton` in `render.js`.
+
 ### 1. Download or Clone the Repository
 
 ```bash
@@ -41,4 +45,4 @@ Or download it as a ZIP and extract it to a folder.
 
 ## Know bugs to fix
 
--   Doesn't update the required energy after manually clicking button or when energy is refreshed
+-   Doesn't update the required energy after manually clicking button or when energy is refreshed or when energy updates from potion or interval
